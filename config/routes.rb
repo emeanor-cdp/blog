@@ -5,8 +5,12 @@ Rails.application.routes.draw do
 
   # Creates all the routes needed for a basic CRUD object, so we don't have to
   # do it manually.
-  resources :articles
-  
+  resources :articles do
+    # This creates comments as a nested resource within articles. This is 
+    # another part of capturing the hierarchical relationship that exists 
+    # between articles and comments.
+    resources :comments
+  end
   
   ### Below is the manual way that's obscured by the simpler code above.
   # This route declares that GET /articles requests are mapped to the index
