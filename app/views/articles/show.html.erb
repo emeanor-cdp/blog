@@ -1,3 +1,8 @@
 <h1><%= @article.title %></h1>
+<small>Originally posted <%= @article.created_at %></small>
+
+<% if !@article.created_at.eql?(@article.updated_at) %>
+  <br /><small>Updated at <%= @article.updated_at %></small>
+<% end %>
 
 <p><%= @article.body %></p>
