@@ -14,31 +14,12 @@
 </ul>
 
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-  <p>
-    <strong>Commenter: </strong>
-    <%= comment.commenter %>
-  </p>
-
-  <p>
-    <strong>Comment: </strong>
-    <%= comment.body %>
-  </p>
-<% end %>
+<!-- Apparenly this will loop through the comments and display them according to
+the views/comments/_comment.html.erb partial. -->
+<%= render @article.comments %>
 
 <h2>Add a comment:</h2>
-<%= form_with model: [ @article, @article.comments.build ] do |form| %>
-  <p>
-    <%= form.label :commenter %><br />
-    <%= form.text_field :commenter %>
-  </p>
-
-  <p>
-    <%= form.label :body %><br />
-    <%= form.text_area :body %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<!-- I guess this clarifies the above a bit. It uses the _comments partial
+because it has the same name as the attribute being rendered. Otherwise, it
+needs to be told which partial to use. -->
+<%= render 'comments/form' %>
