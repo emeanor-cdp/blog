@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   def create
     # Instantiates a new article with values for title and body, passed from the
     # article creation form in the #new view.
-    @article = Article.new(title: '...', body: '...')
+    @article = Article.new(article_params)
 
     # Attempt to save it. Redirect to its page if successful.
     # redirect_to causes the browser to make a new request, which needs to be
@@ -31,5 +31,12 @@ class ArticlesController < ApplicationController
       # If not successful, redisplay the creation form in the #new view.
       render :new
     end
+  end
+
+  private
+  def article_params
+    # Filters the params Hash passed by the create view to make sure it doesn't
+    # contain values we don't want. Called above in #create.
+    params.require(:article).permit(:title, :body)
   end
 end
