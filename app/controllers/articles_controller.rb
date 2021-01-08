@@ -22,10 +22,14 @@ class ArticlesController < ApplicationController
     @article = Article.new(title: '...', body: '...')
 
     # Attempt to save it. Redirect to its page if successful.
+    # redirect_to causes the browser to make a new request, which needs to be
+    # done when the database is mutated. Otherwise, if the user refreshes the
+    # page, the same mutation will be repeated.
     if @article.save
       redirect_to article
     else
       # If not successful, redisplay the creation form in the #new view.
       render :new
+    end
   end
 end
