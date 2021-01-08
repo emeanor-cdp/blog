@@ -26,9 +26,23 @@ class ArticlesController < ApplicationController
     # done when the database is mutated. Otherwise, if the user refreshes the
     # page, the same mutation will be repeated.
     if @article.save
-      redirect_to article
+      redirect_to @article
     else
       # If not successful, redisplay the creation form in the #new view.
+      render :new
+    end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      redirect_to @article
+    else
       render :new
     end
   end
