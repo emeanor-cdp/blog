@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   # :id designates a route parameter. A route parameter captures a segment of 
   # the request's path, and puts that value into the params Hash, which is 
   # accessible by the controller action (in this case, show).
-  get '/articles/:id', to: 'article#show'
+  get '/articles/:id', to: 'articles#show'
 end
