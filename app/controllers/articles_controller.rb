@@ -47,6 +47,13 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+
+    redirect_to root_path
+  end
+
   private
   def article_params
     # Filters the params Hash passed by the create view to make sure it doesn't
