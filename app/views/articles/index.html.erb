@@ -5,7 +5,7 @@
   <li>
     <!-- This is the manual way, replaced by the resource helper method link_to.  -->
     <!-- <a href="/articles/<%= article.id %>"> -->
-    <%= link_to article.title, article %>
+    <%= link_to article.title, article unless article.archived? %>
   </li>
   <% end %>
 </ul>
